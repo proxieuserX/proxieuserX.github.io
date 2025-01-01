@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashing VHS Text</title>
+    <style>
+        @font-face {
+            font-family: 'MC';
+            src: url('MC.otf') format('opentype');
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        @keyframes flash {
+            35%, 60% {
+                opacity: 2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .vhs-text {
+            font-size: 2rem;
+            color: white;
+            animation: flash 1s infinite;
+            font-family: 'MC', sans-serif; /* Using the custom MC font */
+            text-shadow: 
+                -2px 0 2px rgba(255, 255, 255, 0.8), 
+                2px 0 2px rgba(255, 255, 255, 0.8),
+                0 -2px 2px rgba(255, 255, 255, 0.8),
+                0 2px 2px rgba(255, 255, 255, 0.8);
+            filter: grayscale(1);
+        }
+
+        .vhs-text::before,
+        .vhs-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: white;
+            opacity: 0.1;
+            z-index: -1;
+            animation: flash 1s infinite;
+        }
+
+        .vhs-text::before {
+            transform: translate(-1px, -1px);
+            filter: blur(1px);
+        }
+
+        .vhs-text::after {
+            transform: translate(1px, 1px);
+            filter: blur(1px);
+        }
+    </style>
+</head>
+<body>
+    <pre class="vhs-text" data-text="">
+	screams.cc is a group that was owned by a user 
+	named Drako and then it was passed down to a 
+	user by the name of jeff the site your on now 
+	"screams.cc" has NOTHING to do with the group 
+	anymore and will not EVER have any relations to it
+
+	                                      -Drako :)
+	
+	</pre>
+</body>
+</html>
